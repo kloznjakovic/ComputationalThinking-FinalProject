@@ -1,5 +1,5 @@
 # ComputationalThinking-FinalProject
-> This project, a loan repayment calculator, was my final semester project for my Computational Thinking Course at The University of Iowa. This code allows the user to create a budget plan for multiple categories, like groceries, housing, others, etc. and shows the spending limit for each category based on their monthly income. 
+> This was my final semester project for my Computational Thinking Course at The University of Iowa. This code allows the user to create a budget plan for multiple categories, like groceries, housing, others, etc. and shows the spending limit for each category based on their monthly income. 
 
 
 ## Table of Contents
