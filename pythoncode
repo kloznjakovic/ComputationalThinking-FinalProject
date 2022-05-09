@@ -1,0 +1,169 @@
+def budgetsteps():
+    from bs4 import BeautifulSoup
+    import requests
+    
+    url = 'https://bettermoneyhabits.bankofamerica.com/en/saving-budgeting/creating-a-budget'
+    
+    #requesting data from URL 
+    request = requests.get(url)
+    soup = BeautifulSoup(request.text, 'lxml')
+    
+    h = soup.find_all('h2', class_="heading__text text--primary-color heading-level-2") [0:7]
+    #Gathering all h2 tags (steps) within the url
+    p = soup.find_all('div', class_="generic-text text parbase section") [2:8]
+    #Gathering all paragraphs of information associated with each budgeting step
+    
+    list_h = [] #Generating an empty list for the h2 tags
+    list_p = [] #Generating an empty list for paragraphs
+    
+    #Appending both paragraph and h2 lists for text that is going to be scraped and added
+    for word in h:
+        list_h.append(word.text)
+    for word in p:
+        list_p.append(word.text)
+    
+    #print before steps 
+    print("Budget Steps and Tips: ")
+    
+    #printing step 1 
+    print(list_h[0])
+    print(list_p[0])
+    
+    #printing step 2
+    print(list_h[1])
+    print(list_p[1])
+    
+    #printing step 3
+    print(list_h[2])
+    print(list_p[2])
+    
+    #printing step 4
+    print(list_h[3])
+    print(list_p[3])
+    
+    #printing step 5
+    print(list_h[4])
+    print(list_p[4])
+    
+    #printing step 6
+    print(list_h[5])
+    print(list_p[5])
+ 
+budgetsteps()
+ 
+def budget():
+    MonthlyIncome = int(input("What is your monthly income?: $"))
+    PercentageCheck = 0
+    while PercentageCheck != 1:
+        print(" ")
+        print("Please set your budget goals for the following categories: Grocery, Gas, Housing, Utilities, Savings, Other.")
+        grocery = float(input("What percentage of Monthly Income do you want to spend on groceries?: "))
+        gas = float(input("What percentage of Monthly Income do you want to spend on gas?: "))
+        housing = float(input("What percentage of Monthly Income do you want to spend on housing?: "))
+        utilities = float(input("What percentage of Monthly Income do you want to spend on utilities?: "))
+        savings = float(input("What percentage of Monthly Income do you want to put into savings?: "))
+        other = float(input("What percentage of Monthly Income do you want to spend on other?: "))
+        
+        PercentageCheck = grocery + gas + housing + utilities + savings + other
+        if PercentageCheck != 1:
+            print("Please enter different decimal amounts that add up to 1")
+        #reruns the code
+    if PercentageCheck == 1:
+        GroceryLimit = grocery * MonthlyIncome
+        GasLimit = gas * MonthlyIncome
+        HousingLimit =  housing * MonthlyIncome
+        UtilitiesLimit = utilities * MonthlyIncome
+        SavingsLimit = savings * MonthlyIncome
+        OtherLimit = other * MonthlyIncome
+        print(" ")
+        print("You should budget these amounts for each category:")
+        print(f"Groceries: ${GroceryLimit}")
+        print(f"Gas: ${GasLimit}")
+        print(f"housing: ${HousingLimit}")
+        print(f"Utilities: ${UtilitiesLimit}")
+        print(f"Savings: ${SavingsLimit}")
+        print(f"Other: ${OtherLimit}")
+    return GroceryLimit, GasLimit, HousingLimit, UtilitiesLimit, SavingsLimit, OtherLimit
+ 
+GroceryLimit, GasLimit, HousingLimit, UtilitiesLimit, SavingsLimit, OtherLimit = budget()
+ 
+def transaction():
+#setting the variable values equal to 0
+    GrocerySpending = 0
+    GasSpending = 0
+    HousingSpending = 0
+    UtilitiesSpending = 0
+    SavingsSpending = 0
+    OtherSpending = 0
+    SpendingCategory = 0
+    transaction = 0
+#while loop at the beginning of function to make sure user is inputting 1
+#as the first category to account for (groceries)
+    while SpendingCategory > 0 or SpendingCategory < 7:
+        SpendingCategory = int(input("Enter 1 to record a transaction for groceries: "))
+        if SpendingCategory != 1:
+            print("Please input 1") #loops back to input so user can enter 1
+        else:
+            break
+#if statement to go through each spending cateogry. After one if statement is completed ("true")
+#the next if statement is executed. This way each spending category can have an input
+    if SpendingCategory == 1:
+        transaction = float(input("How much did you spend on groceries this month? $" ))
+        GrocerySpending += transaction
+        SpendingCategory = int(input("Enter 2 to record a transaction for gas: "))
+        if SpendingCategory == 2:
+            transaction = float(input("How much did you spend on gas this month? $" ))
+            GasSpending += transaction
+            SpendingCategory = int(input("Enter 3 to record a transaction for housing: "))
+            if SpendingCategory == 3:
+                transaction = float(input("How much did you spend on housing this month? $" ))
+                HousingSpending += transaction
+                SpendingCategory = int(input("Enter 4 to record a transaction for utilities: "))
+                if SpendingCategory == 4:
+                    transaction = float(input("How much did you spend on utilities this month? $" ))
+                    UtilitiesSpending += transaction
+                    SpendingCategory = int(input("Enter 5 to record an expense for savings: "))
+                    if SpendingCategory == 5:
+                        transaction = float(input("How much did you put into savings this month? $" ))
+                        SavingsSpending += transaction
+                        SpendingCategory = int(input("Enter 6 to record a transaction for a different expense: "))
+                        if SpendingCategory == 6:
+                            transaction = float(input("How much did you spend on other expenses this month? $" ))
+                            OtherSpending += transaction
+    return GrocerySpending, GasSpending, HousingSpending, UtilitiesSpending, SavingsSpending, OtherSpending
+#returns inputted amounts by user in correspondance with the correct category
+ 
+GrocerySpending, GasSpending, HousingSpending, UtilitiesSpending, SavingsSpending, OtherSpending = transaction()
+ 
+def plot():
+    import matplotlib.pyplot as plt 
+    import matplotlib.patches as mpatches
+    import numpy 
+    
+    #data
+    budget = [GroceryLimit, GasLimit, HousingLimit, UtilitiesLimit, SavingsLimit, OtherLimit]
+    spent = [GrocerySpending, GasSpending, HousingSpending, UtilitiesSpending, SavingsSpending, OtherSpending]
+    x = numpy.arange(len(spent))
+    
+    #plot data
+    bar_width = 0.27
+    plt.bar(x, budget, width=bar_width, color='blue', zorder=2)
+    plt.bar(x + bar_width, spent, width=bar_width, color='red', zorder=2)
+    
+    #labels
+    plt.xticks(x + bar_width, ['Groceries', 'Gas', 'Housing', 'Utilties', 'Savings', 'Other'])
+    plt.title('Monthly Budget Distribution')
+    plt.ylabel('Budget/Money Spent')
+    
+    #legend
+    blue_patch = mpatches.Patch(color = 'blue', label='budget')
+    red_patch = mpatches.Patch(color='red', label = 'Spent')
+    plt.legend(handles=[blue_patch, red_patch])
+    
+    #grid
+    plt.grid(axis='y')
+    
+    plt.show()
+ 
+plot()
+
