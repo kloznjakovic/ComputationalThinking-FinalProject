@@ -1,5 +1,5 @@
 # ComputationalThinking-FinalProject
-> This was my final semester project for my Computational Thinking Course at The University of Iowa. This code allows the user to create a budget plan for multiple categories, like groceries, housing, others, etc. and shows the spending limit for each category based on their monthly income. 
+> This was my final semester project for my Computational Thinking Course at The University of Iowa. This code allows the user to create a budget plan for multiple categories, like groceries, housing, others, etc. and shows the spending limit for each category based on their monthly income and percentage they are willing to spend in each category. 
 
 
 ## Table of Contents
@@ -14,9 +14,9 @@
 
 
 ## General Information
-- This code allows the user to see how many years/months it will take in order to pay back loans. It accounts for interest, amount borrowed, and goal time period of repayment.
-- I made this project so I could calculate how long it would take me to pay back all my loans...the results were unfavorable to say the least.
--Code uses input variables and an interactive program for users to calculate their exact repayments.
+- This code allows the user to create a budget plan by inputting their monthly income and what percentage of that monthly income they want to spend on each category.
+- I made this project so I could help myself with budget planning for post college and make sure I am not overspending in any category.
+-Code uses input variables and an interactive program for users to calculate their spending limits and shows it in a bar chart.
 
 
 ## Technologies Used
@@ -24,12 +24,14 @@
 
 
 ## Variables
-List of input variables/calculations (code):
-- 
-
-
-## Plots
-The code utilizes a bar chart to show limits for each category compared to what you spent that ...
+List of input variables (code):
+- MonthlyIncome = int(input("What is your monthly income?: $"))
+- grocery = float(input("What percentage of Monthly Income do you want to spend on groceries?: "))
+- gas = float(input("What percentage of Monthly Income do you want to spend on gas?: "))
+- housing = float(input("What percentage of Monthly Income do you want to spend on housing?: "))
+- utilities = float(input("What percentage of Monthly Income do you want to spend on utilities?: "))
+- savings = float(input("What percentage of Monthly Income do you want to put into savings?: "))
+- other = float(input("What percentage of Monthly Income do you want to spend on other?: "))
 
 
 ## Project Status
